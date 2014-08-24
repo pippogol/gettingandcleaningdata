@@ -12,13 +12,13 @@ run_analysis<-function(directory="UCI HAR Dataset") {
   
   d<-rbind(d1,d2)
   
+  ## Look for features names containing mean or std
   feat<-read.table("UCI HAR Dataset/features.txt")
   m_obs<-subset(feat,grepl("mean()",feat[ ,2]))
   s_obs<-subset(feat,grepl("std()",feat[ ,2]))
   obs_listnum<-rbind(m_obs,s_obs)[ ,1]
   obs_name<-rbind(m_obs,s_obs)[ ,2]
 
-  
   d_obs<-d[ ,c(obs_listnum,ncol(d)-1,ncol(d))] ##subset mean+std features
   names(d_obs)<-obs_name ##rename features
   names(d_obs)[ncol(d_obs)-1]<-"Subject"
