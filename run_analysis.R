@@ -35,7 +35,7 @@ run_analysis<-function(directory="UCI HAR Dataset") {
   write.table(d_obs,"tidy_dataset.txt",row.name=FALSE)
   
   ## calculate average of all means and standard deviations
-  calc_mean<-function(x) {tapply(d_obs[,x],list(d_obs$Activity,d_obs$Subject),mean)}
-  tidy_data_avg<-lapply(1:length(obs_listnum),calc)
-  write.table(tidy_data_avg,"tidy_dataset_avg.txt",row.name=FALSE)
+  tidy_avg<-aggregate(. ~ Activity + Subject, data=d_obs, FUN=mean)
+  tidy_avg<-tidy_avg[order(tidy_avg$Activity, tidy_avg$Subject), ] 
+  write.table(tidy_avg,"tidy_dataset_avg.txt",row.name=FALSE)
 }
