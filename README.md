@@ -1,7 +1,5 @@
----
-title: "run_analysis.R"
-output: html_document
----
+# run_analysis.R
+
 ## Description
 This script merges the train and test data sets and output two tidy data sets.
   1. tidy_dataset.txt: tidy data set with means and standard deviations measurements only
